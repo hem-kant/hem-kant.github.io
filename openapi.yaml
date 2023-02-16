@@ -51,6 +51,9 @@ paths:
                   type: array
                   items:
                     $ref: "#/components/schemas/assets" 
+              required:
+                - assestID
+              
       responses:
         '201':
           description: Assets uploaded successfully
