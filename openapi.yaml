@@ -3,7 +3,7 @@ info:
   title: DaB Integration with ContentFlow (CMS)
   description: |
    ## About API
-    Using this `OpenAPI specification`, Assets Management System can understand the _API_ that is exposed by the ***FoC***  team to UPLOAD, UPDATE, GET and DELETE Assets FROM ContentFlow.
+    Using this `OpenAPI specification`, Assets Management System can understand the _API_   that is exposed by the ***FoC***   team to UPLOAD, UPDATE, GET and DELETE Assets FROM ContentFlow.
   x-custom-info:
     comment: some comments
     authors:
