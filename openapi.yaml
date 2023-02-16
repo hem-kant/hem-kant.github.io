@@ -7,8 +7,8 @@ info:
   x-custom-info:
     comment: some comments
     authors:
-      - name: XYZ
-        email: xya@abc.com
+      - name: Hem Kant
+        email: hem.kant@adidas.com
   contact: 
     name: FoC Support
     email: hem.kant@adidas.com
@@ -38,6 +38,7 @@ paths:
       summary: Uplaod assets to ContentFlow (CMS).
       description: |
         Post assets for processing
+      operationId: uploadAssets
       requestBody:
         content:
           multipart/form-data::
