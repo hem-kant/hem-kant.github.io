@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info: 
-  title: DAB Integration with ContentFlow (CMS)
+  title: DaB Integration with ContentFlow (CMS)
   description: |
    ## About API
     Using this `OpenAPI specification`, any Assets Management System can understand the _APIs_ that are exposed by the ***FoC***  team to push Assets to ContentFlow.
@@ -87,7 +87,7 @@ components:
                     name of files to be added. Name cannot contain any of the
                     characters mentioned in braces (\, /, :, *, ?, “, <, >, |)
         assetsPath:
-          description: files for translation. type is file.
+          description: files for upload. type is file.
           type: string
           format: binary 
       required:
