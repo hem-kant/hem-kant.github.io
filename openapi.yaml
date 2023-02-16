@@ -32,13 +32,144 @@ servers:
         default: "8080"
       version: 
         default: v1
-security:
-  - APIKeyAuth: []
-securitySchemes:
-   APIKeyAuth:
+paths:
+  /assets:
+    post:
+      summary: order api
+      description: |
+        Post order details for processing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products: 
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/products" 
+      responses:
+        '201':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: integer
+          links:
+            GetOrderByOrderId:
+              $ref: "#/components/links/GetOrderByOrderId"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+components:
+  parameters:
+    orderIdQueryParam:
+      name: orderId
+      in: query
+      required: true
+      schema:
+        type: integer
+  schemas:
+    Address: 
+      type: object
+      properties:
+        addressLine:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+          enum:
+            - ND
+            - MUM
+            - HYD
+        zipcode:
+          type: string
+        isOfficeAddress: 
+          type: boolean
+    products:
+      type: object
+      properties:
+        productId:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+          format: float
+        categoryName:
+          type: string
+          nullable: true
+        releseDate:
+          type: string
+          format: date
+          readOnly: true
+        quantity:
+          type: integer
+          description: |
+              ***Quantity*** represents `stock` value when this field is being sent by OnlineShope.Where as in the scenarios of consumer sending this feild, it represents `number of product items` inside the order. Consumers are expected to handle the scenario of stopping the end user <u>*when the stock value is 0*</u> 
+    category:
+      type: object
+      properties:
+        categoryId:
+          type: integer
+        name:
+          type: string
+    mobiles:
+      allOf:
+        - $ref: "#/components/schemas/products"
+        - type: object
+          properties:
+            networkType:
+              type: string
+              enum:
+                - 4G
+                - 5G
+          required: [networkType]
+    laptops:
+      allOf:
+        - $ref: "#/components/schemas/products"
+        - type: object
+          properties:
+            ram:
+              type: string
+              enum:
+                - 8GB RAM
+                - 16GB RAM
+                - 32GB RAM
+          required: [ram]
+    OrderSummary:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/products"
+    OrderDetails:
+      type: object
+      properties:
+        address:
+          $ref: "#/components/schemas/Address"
+  responses:
+    InternalServerError:
+      description: |
+        ### An error has occured please contant hemkant.india@gmail.com for assistance
+  links:
+    GetOrderByOrderId:
+      description: >
+        * The `orderId` value returned in the response can be used as a input paramter in `GET /orders`.
+      operationId: getProductdetails
+      parameters:
+        orderId: '$response.body#/orderId'
+  securitySchemes:
+    APIKeyAuth:
       type: apiKey
       in: header
       name: X-API-KEY
+
+          
 
       
       
