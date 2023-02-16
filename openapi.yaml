@@ -20,18 +20,6 @@ servers:
     description: QA API
   - url: https://api.com/v1/
     description: PROD API
-  - url: https://{username}.api.com:{port}/{version}
-    variables:
-      username:
-        default: demo
-        description: this value is a default.
-      port:
-        enum:
-          - "8080"
-          - "443"
-        default: "8080"
-      version: 
-        default: v1
 paths:
   /assets:
     post:
