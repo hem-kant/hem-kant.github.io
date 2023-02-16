@@ -63,8 +63,8 @@ paths:
               $ref: "#/components/links/GetOrderByOrderId"
         '500':
           $ref: "#/components/responses/Standard500ErrorResponse"
-        '400':
-          $ref: "#/components/responses/Standard400ErrorResponse"
+        '404':
+          $ref: "#/components/responses/Standard404ErrorResponse"
         
 components:
   parameters:
@@ -162,6 +162,58 @@ components:
                 error: RESOURCE_NOT_FOUND
                 message: The resource you are requesting does not exists.
                 detail: '{''pointer'' : ''not available''}'
+    Standard414ErrorResponse:
+      description: The request URI was too long
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/problem+json
+      content:
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2017-07-13 10:49:29'
+                error: REQUEST_URI_TOO_LONG
+                message: The requested URI was too long
+                detail: '{''pointer'' : ''not available''}'
+    Standard422ErrorResponse:
+      description: Mandatory details not present
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/problem+json
+      content:
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2017-07-13 10:49:29'
+                error: MANDATORY_PARAMETERS_NOT_FOUND
+                message: The query paramater filter should have job-id as mandatory.
+                detail: >-
+                  {'/projects/{project-id}/status' : '?filter=job-id in
+                  (35001)'}
   links:
     GetOrderByOrderId:
       description: >
