@@ -83,8 +83,13 @@ components:
           type: integer
         assetName:
           type: string
+          description: >-
+                    name of files to be added. Name cannot contain any of the
+                    characters mentioned in braces (\, /, :, *, ?, “, <, >, |)
         assetsPath:
-          type: string 
+          description: files for translation. type is file.
+          type: string
+          format: binary 
       required:
         - assetID
         - assetName
