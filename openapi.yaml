@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info: 
-  title: Shop Online APIs Definition - demo
+  title: DAB Integration with ContentFlow (CMS)
   description: |
    ## About API
     Using this `OpenAPI specification`, any Assets Management System can understand the _APIs_ that are exposed by the ***FoC*** team to push Assets to ContentFlow.
@@ -35,9 +35,9 @@ servers:
 paths:
   /assets:
     post:
-      summary: order api
+      summary: Uplaod assets to Assets Management system.
       description: |
-        Post order details for processing
+        Post assets for processing
       requestBody:
         content:
           application/json:
@@ -47,7 +47,7 @@ paths:
                 products: 
                   type: array
                   items:
-                    $ref: "#/components/schemas/products" 
+                    $ref: "#/components/schemas/assets" 
       responses:
         '201':
           description: Order created successfully
@@ -89,7 +89,7 @@ components:
           type: string
         isOfficeAddress: 
           type: boolean
-    products:
+    assets:
       type: object
       properties:
         productId:
@@ -155,7 +155,7 @@ components:
   responses:
     InternalServerError:
       description: |
-        ### An error has occured please contant hemkant.india@gmail.com for assistance
+        ### An error has occured please contant hem.kant@adidas.com for assistance
   links:
     GetOrderByOrderId:
       description: >
