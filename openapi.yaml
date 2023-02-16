@@ -126,7 +126,7 @@ components:
           examples:
             response:
               value:
-                timestamp: '2017-07-13 10:49:29'
+                timestamp: '2023-02-16 10:49:29'
                 error: INTERNAL_SERVER_ERROR
                 title: There was an error processing the request
                 detail: '{''pointer'' : ''not available''}'
@@ -151,7 +151,7 @@ components:
           examples:
             response:
               value:
-                timestamp: '2017-07-13 10:49:29'
+                timestamp: '2023-02-16 10:49:29'
                 error: RESOURCE_NOT_FOUND
                 message: The resource you are requesting does not exists.
                 detail: '{''pointer'' : ''not available''}'
@@ -176,7 +176,7 @@ components:
           examples:
             response:
               value:
-                timestamp: '2017-07-13 10:49:29'
+                timestamp: '2023-02-16 10:49:29'
                 error: REQUEST_URI_TOO_LONG
                 message: The requested URI was too long
                 detail: '{''pointer'' : ''not available''}'
@@ -201,7 +201,7 @@ components:
           examples:
             response:
               value:
-                timestamp: '2017-07-13 10:49:29'
+                timestamp: '2023-02-16 10:49:29'
                 error: MANDATORY_PARAMETERS_NOT_FOUND
                 message: The query paramater filter should have job-id as mandatory.
                 detail: >-
