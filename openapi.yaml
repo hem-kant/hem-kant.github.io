@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info: 
-  title: DAB Integration with ContentFlow (CMS)
+  title: DaB Integration with ContentFlow (CMS)
   description: |
    ## About API
     Using this `OpenAPI specification`, any Assets Management System can understand the _APIs_ that are exposed by the ***FoC*** team to push Assets to ContentFlow.
@@ -56,7 +56,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  orderId:
+                  assetID:
                     type: integer
           links:
             GetOrderByOrderId:
@@ -75,7 +75,7 @@ components:
     assets:
       type: object
       properties:
-        assetId:
+        assetID:
           type: integer
         assetname:
           type: string
