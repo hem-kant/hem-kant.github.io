@@ -62,8 +62,9 @@ paths:
             GetOrderByOrderId:
               $ref: "#/components/links/GetOrderByOrderId"
         '500':
-          $ref: "#/components/responses/InternalServerError"
+          $ref: "#/components/responses/Standard500ErrorResponse"
         '400':
+          $ref: "#/components/responses/Standard400ErrorResponse"
         
 components:
   parameters:
@@ -136,8 +137,8 @@ components:
                 error: INTERNAL_SERVER_ERROR
                 title: There was an error processing the request
                 detail: '{''pointer'' : ''not available''}'
-    Standard400ErrorResponse:
-      description: Bad request
+    Standard404ErrorResponse:
+      description: Resource not found
       headers:
         Content-Type:
           schema:
@@ -146,6 +147,21 @@ components:
       content:
         application/hal+json:
           schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2017-07-13 10:49:29'
+                error: RESOURCE_NOT_FOUND
+                message: The resource you are requesting does not exists.
+                detail: '{''pointer'' : ''not available''}'
   links:
     GetOrderByOrderId:
       description: >
