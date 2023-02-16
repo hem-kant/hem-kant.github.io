@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info: 
-  title: DaB Integration with ContentFlow (CMS)
+  title: DAB Integration with ContentFlow (CMS)
   description: |
    ## About API
     Using this `OpenAPI specification`, any Assets Management System can understand the _APIs_ that are exposed by the ***FoC*** team to push Assets to ContentFlow.
@@ -63,6 +63,8 @@ paths:
               $ref: "#/components/links/GetOrderByOrderId"
         '500':
           $ref: "#/components/responses/InternalServerError"
+        '400':
+        
 components:
   parameters:
     orderIdQueryParam:
@@ -77,7 +79,7 @@ components:
       properties:
         assetID:
           type: integer
-        assetName:
+        assetname:
           type: string
         assetsPath:
           type: string 
@@ -85,10 +87,65 @@ components:
           type: string
           format: date
           readOnly: true
+    Error:
+      required:
+        - timestamp
+        - error
+        - message
+        - detail
+      properties:
+        timestamp:
+          description: The server time stamp
+          type: string
+          example: 1518308894652
+        error:
+          description: The Brand API error code
+          type: string
+          example: 336
+        message:
+          description: The error message
+          type: string
+          example: error mesage
+        detail:
+          description: The source of the error
+          type: string
+          example: source
   responses:
-    InternalServerError:
-      description: |
-        ### An error has occured please contant hem.kant@adidas.com for assistance
+    Standard500ErrorResponse:
+      description: There was an unexpected error processing the request
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/problem+json
+      content:
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2017-07-13 10:49:29'
+                error: INTERNAL_SERVER_ERROR
+                title: There was an error processing the request
+                detail: '{''pointer'' : ''not available''}'
+    Standard400ErrorResponse:
+      description: Bad request
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/problem+json
+      content:
+        application/hal+json:
+          schema:
   links:
     GetOrderByOrderId:
       description: >
