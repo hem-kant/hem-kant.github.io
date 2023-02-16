@@ -35,7 +35,7 @@ servers:
 paths:
   /assets:
     post:
-      summary: Uplaod assets to Assets Management system.
+      summary: Uplaod assets to ContentFlow (CMS).
       description: |
         Post assets for processing
       requestBody:
@@ -75,24 +75,16 @@ components:
     assets:
       type: object
       properties:
-        productId:
+        assetId:
           type: integer
-        name:
+        assetname:
           type: string
-        price:
-          type: number
-          format: float
-        categoryName:
-          type: string
-          nullable: true
+        assetsPath:
+          type: string 
         releseDate:
           type: string
           format: date
           readOnly: true
-        quantity:
-          type: integer
-          description: |
-              ***Quantity*** represents `stock` value when this field is being sent by OnlineShope.Where as in the scenarios of consumer sending this feild, it represents `number of product items` inside the order. Consumers are expected to handle the scenario of stopping the end user <u>*when the stock value is 0*</u>
   responses:
     InternalServerError:
       description: |
