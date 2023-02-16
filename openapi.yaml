@@ -72,23 +72,6 @@ components:
       schema:
         type: integer
   schemas:
-    Address: 
-      type: object
-      properties:
-        addressLine:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-          enum:
-            - ND
-            - MUM
-            - HYD
-        zipcode:
-          type: string
-        isOfficeAddress: 
-          type: boolean
     assets:
       type: object
       properties:
@@ -109,49 +92,7 @@ components:
         quantity:
           type: integer
           description: |
-              ***Quantity*** represents `stock` value when this field is being sent by OnlineShope.Where as in the scenarios of consumer sending this feild, it represents `number of product items` inside the order. Consumers are expected to handle the scenario of stopping the end user <u>*when the stock value is 0*</u> 
-    category:
-      type: object
-      properties:
-        categoryId:
-          type: integer
-        name:
-          type: string
-    mobiles:
-      allOf:
-        - $ref: "#/components/schemas/products"
-        - type: object
-          properties:
-            networkType:
-              type: string
-              enum:
-                - 4G
-                - 5G
-          required: [networkType]
-    laptops:
-      allOf:
-        - $ref: "#/components/schemas/products"
-        - type: object
-          properties:
-            ram:
-              type: string
-              enum:
-                - 8GB RAM
-                - 16GB RAM
-                - 32GB RAM
-          required: [ram]
-    OrderSummary:
-      type: object
-      properties:
-        products:
-          type: array
-          items:
-            $ref: "#/components/schemas/products"
-    OrderDetails:
-      type: object
-      properties:
-        address:
-          $ref: "#/components/schemas/Address"
+              ***Quantity*** represents `stock` value when this field is being sent by OnlineShope.Where as in the scenarios of consumer sending this feild, it represents `number of product items` inside the order. Consumers are expected to handle the scenario of stopping the end user <u>*when the stock value is 0*</u>
   responses:
     InternalServerError:
       description: |
