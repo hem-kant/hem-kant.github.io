@@ -74,14 +74,14 @@ components:
           description: >-
                     name of files to be added. Name cannot contain any of the
                     characters mentioned in braces (\, /, :, *, ?, “, <, >, |)
-        assetsPath:
+        assetPath:
           description: files for upload. type is file.
           type: string
           format: binary 
       required:
         - assetID
         - assetName
-        - assetsPath
+        - assetPath
     Error:
       required:
         - timestamp
