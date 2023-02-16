@@ -37,7 +37,7 @@ paths:
     post:
       summary: Uplaod assets to ContentFlow (CMS).
       description: |
-        Post assets form Dab and upload to ContentFlow
+        Post assets form DaB and upload to ContentFlow (CMS)
       operationId: uploadAssets
       security:
         - APIKeyAuth: []
