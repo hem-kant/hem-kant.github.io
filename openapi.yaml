@@ -2,19 +2,8 @@ openapi: 3.0.3
 info: 
   title: Shop Online APIs Definition - demo
   description: |
-   ## About Us
-    Using this `OpenAPI specification`, any consumer can understand the _APIs_ that are exposed by the ***Shop-Online*** team.
-    # Product Categories
-      - Mobiles
-        - Apple
-        - Samsung
-        - OnePlus
-      - Laptops
-      - Watches
-      - Accessories 
-        - TV
-        - Home Appliances
-  termsOfService: http://hem-kant.blogspot.com/
+   ## About API
+    Using this `OpenAPI specification`, any DAB can understand the _APIs_ that are exposed by the ***FoC*** team to push Assets to ContentFlow.
   x-custom-info:
     comment: some comments
     authors:
