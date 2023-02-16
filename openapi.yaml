@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info: 
-  title: Shop Online APIs Definition
+  title: Shop Online APIs Definition - demo
   description: |
    ## About Us
     Using this `OpenAPI specification`, any consumer can understand the _APIs_ that are exposed by the ***Shop-Online*** team.
