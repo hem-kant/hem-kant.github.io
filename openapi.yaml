@@ -80,14 +80,10 @@ components:
       properties:
         assetID:
           type: integer
-        assetname:
+        assetName:
           type: string
         assetsPath:
           type: string 
-        releseDate:
-          type: string
-          format: date
-          readOnly: true
     Error:
       required:
         - timestamp
