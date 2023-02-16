@@ -61,8 +61,6 @@ paths:
                     type: integer
         '500':
           $ref: "#/components/responses/Standard500ErrorResponse"
-        '404':
-          $ref: "#/components/responses/Standard404ErrorResponse"
         
 components:
   parameters:
