@@ -40,7 +40,7 @@ paths:
         Post assets for processing
       requestBody:
         content:
-          application/json:
+          multipart/form-data::
             schema:
               type: object
               properties:
@@ -50,7 +50,7 @@ paths:
                     $ref: "#/components/schemas/assets" 
       responses:
         '201':
-          description: Order created successfully
+          description: Assets uploaded successfully
           content:
             application/json:
               schema:
