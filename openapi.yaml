@@ -39,6 +39,8 @@ paths:
       description: |
         Post assets for processing
       operationId: uploadAssets
+      security:
+        - APIKeyAuth: []
       requestBody:
         content:
           multipart/form-data::
