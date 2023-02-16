@@ -44,7 +44,7 @@ paths:
             schema:
               type: object
               properties:
-                Assets: 
+                assets: 
                   type: array
                   items:
                     $ref: "#/components/schemas/assets" 
