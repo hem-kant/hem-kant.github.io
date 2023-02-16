@@ -58,9 +58,6 @@ paths:
                 properties:
                   assetID:
                     type: integer
-          links:
-            GetOrderByOrderId:
-              $ref: "#/components/links/GetOrderByOrderId"
         '500':
           $ref: "#/components/responses/Standard500ErrorResponse"
         '404':
@@ -139,7 +136,7 @@ components:
         Content-Type:
           schema:
             type: string
-            default: application/problem+json
+            default: application/json
       content:
         application/hal+json:
           schema:
@@ -164,7 +161,7 @@ components:
         Content-Type:
           schema:
             type: string
-            default: application/problem+json
+            default: application/json
       content:
         application/hal+json:
           schema:
