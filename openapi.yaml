@@ -3,7 +3,7 @@ info:
   title: Shop Online APIs Definition - demo
   description: |
    ## About API
-    Using this `OpenAPI specification`, any DAB can understand the _APIs_ that are exposed by the ***FoC*** team to push Assets to ContentFlow.
+    Using this `OpenAPI specification`, any Assets Management System can understand the _APIs_ that are exposed by the ***FoC*** team to push Assets to ContentFlow.
   x-custom-info:
     comment: some comments
     authors:
@@ -32,6 +32,13 @@ servers:
         default: "8080"
       version: 
         default: v1
+security:
+  - APIKeyAuth: []
+securitySchemes:
+   APIKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
 
       
       
