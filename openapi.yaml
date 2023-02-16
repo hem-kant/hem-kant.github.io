@@ -77,7 +77,7 @@ components:
       properties:
         assetID:
           type: integer
-        assetname:
+        assetName:
           type: string
         assetsPath:
           type: string 
