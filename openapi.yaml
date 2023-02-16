@@ -37,7 +37,7 @@ paths:
     post:
       summary: Uplaod assets to ContentFlow (CMS).
       description: |
-        Post assets for processing
+        Post assets form Dab and upload to ContentFlow
       operationId: uploadAssets
       security:
         - APIKeyAuth: []
@@ -216,17 +216,9 @@ components:
               value:
                 timestamp: '2023-02-16 10:49:29'
                 error: MANDATORY_PARAMETERS_NOT_FOUND
-                message: The query paramater filter should have job-id as mandatory.
+                message: The query paramater filter should have assets-id as mandatory.
                 detail: >-
-                  {'/projects/{project-id}/status' : '?filter=job-id in
-                  (35001)'}
-  links:
-    GetOrderByOrderId:
-      description: >
-        * The `orderId` value returned in the response can be used as a input paramter in `GET /orders`.
-      operationId: getProductdetails
-      parameters:
-        orderId: '$response.body#/orderId'
+                  coming soon!!
   securitySchemes:
     BasicAuth:
       type: http
