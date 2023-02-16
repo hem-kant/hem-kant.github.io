@@ -51,8 +51,6 @@ paths:
                   type: array
                   items:
                     $ref: "#/components/schemas/assets" 
-              required:
-                - assestID
               
       responses:
         '201':
@@ -85,6 +83,10 @@ components:
           type: string
         assetsPath:
           type: string 
+      required:
+        - assetID
+        - assetName
+        - assetsPath
     Error:
       required:
         - timestamp
