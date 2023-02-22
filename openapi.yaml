@@ -17,7 +17,7 @@ servers:
   - url: https://api.com/v1/
     description: PROD API
 paths:
-  /assets:
+  /asset:
     post:
       summary: Upload assets to ContentFlow (CMS).
       description: |
@@ -89,7 +89,7 @@ paths:
         '500':
           $ref: "#/components/responses/Standard500ErrorResponse"
           
-  /assets/{assetID}:
+  /asset/{assetID}:
     delete:
       summary: Delete an assets from ContentFlow (CMS)
       description: |
