@@ -2,8 +2,8 @@ openapi: 3.0.3
 info: 
   title: DaB Integration with ContentFlow (CMS)
   description: |
-   ## About API
-    Using this `API specification`, Assets Management System can understand the _API_   that is exposed by the ***FoC***   team to UPLOAD, UPDATE, GET and DELETE Assets in ContentFlow.
+    ## About API
+    Using this `API specification`, Assets Management System can understand the _API_   that is exposed by the ***FoC***   team to ***Upload***, ***Update***, ***Get*** and ***Delete*** Asset in ContentFlow.
 
   contact: 
     name: Hem Kant
@@ -62,11 +62,11 @@ paths:
                   message:
                     type: string
                     
-  /getAsset/{assetID}:
+  /getAsset/{assetId}:
     get:
       summary: Get asset from ContentFlow (CMS).
       description: |
-        Get assets from ContentFlow (CMS)
+        Get asset from ContentFlow (CMS)
       operationId: getAsset
       security:
         - APIKeyAuth: []    
@@ -89,12 +89,11 @@ paths:
         '500':
           $ref: "#/components/responses/Standard500ErrorResponse"
           
-  /asset/{assetID}:
+  /asset/{assetId}:
     delete:
       summary: Delete an asset from ContentFlow (CMS)
       description: |
-         Delete an assets when asset is removed from S3 bucket
-      opreationID: deleteAssets        
+         Delete an asset when it is removed from S3 bucket
       security:
         - APIKeyAuth: []
       parameters:
@@ -145,10 +144,17 @@ components:
           description: files for upload. type is file.
           type: string
           format: binary 
+        metadataFile:
+          description: >-
+                      JSON file which contains metadata for the assets also need to push with the asset and update the metadata values in
+                      asset component in ContentFlow
+          type: string
+          format: binary
       required:
         - assetID
         - assetName
         - assetPath
+        - metadataFile
     Error:
       required:
         - timestamp
