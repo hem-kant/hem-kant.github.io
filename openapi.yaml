@@ -79,8 +79,8 @@ paths:
             maximum: 1000
           example: 100
       responses:
-        '201':
-          description: Assets deleted successfully
+        '200':
+          description: Assets retrived successfully
           content:
             application/json:
               schema:
