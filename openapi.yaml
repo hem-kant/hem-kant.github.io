@@ -37,8 +37,8 @@ paths:
                     $ref: "#/components/schemas/assets" 
               
       responses:
-        '201':
-          description: Assets uploaded successfully
+        '204':
+          description: Assets deleted successfully
           content:
             application/json:
               schema:
@@ -65,11 +65,10 @@ paths:
           required: true
           schema:
             type: integer
-            maximum: 1000
           example: 100
       responses:
         '201':
-          description: Assets uploaded successfully
+          description: Assets deleted successfully
           content:
             application/json:
               schema:
