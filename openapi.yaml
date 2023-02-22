@@ -1,36 +1,14 @@
 openapi: 3.0.3
 info: 
-  title: Shop Online APIs Definition
+  title: DaB Integration with ContentFlow (CMS)
   description: |
-   ## About Us
-    Using this `OpenAPI specification`, any consumer can understand the _APIs_ that are exposed by the ***Shop-Online*** team.
-    # Product Categories
-      - Mobiles
-        - Apple
-        - Samsung
-        - OnePlus
-      - Laptops
-      - Watches
-      - Accessories 
-        - TV
-        - Home Appliances
-  termsOfService: http://hem-kant.blogspot.com/
-  x-custom-info:
-    comment: some comments
-    authors:
-      - name: XYZ
-        email: xya@abc.com
+   ## About API
+    Using this `API specification`, Assets Management System can understand the _API_   that is exposed by the ***FoC***   team to UPLOAD, UPDATE, GET and DELETE Assets in ContentFlow.
+
   contact: 
-    name: API Support
-    url: http://hem-kant.blogspot.com/
-    email: hemkant.india@gmail.com
-  license: 
-    name: OnlineShop License
-    url: http://hem-kant.blogspot.com/
+    name: Hem Kant
+    email: hem.kant@adidas.com
   version: 0.0.1
-externalDocs:
-  url: https://github.com/hem-kant/openapi/
-  description: External Documentation
 servers: 
   - url: https://dev.api.com/v1/
     description: Devlopment API
@@ -38,434 +16,220 @@ servers:
     description: QA API
   - url: https://api.com/v1/
     description: PROD API
-  - url: https://{username}.api.com:{port}/{version}
-    variables:
-      username:
-        default: demo
-        description: this value is a default.
-      port:
-        enum:
-          - "8080"
-          - "443"
-        default: "8080"
-      version: 
-        default: v1
-tags:
-  - name: Categories
-    description: Categories realted opreations
-  - name: Products
-    description: Products realted opreations
-  - name: Orders
-    description: Orders realted opreations
-security:
-  - BasicAuth: []
-  - BearerAuth: []
-  - APIKeyAuth: []
-  - oAuth2AuthCode: 
-    - read
-    - write
-    - admin
-paths: 
-  /categories:
-    get:
-      tags:
-        - Categories
-      summary: Returns the list of all products categories
-      description: |
-         Returns the list of all products and categories 
-         which is available on shopOnline portal
-      operationId: getCategories
-      security:
-        - BasicAuth: []
-      parameters:
-        - name: categoryId
-          in: query
-          schema:
-            type: integer
-            maximum: 1000
-          examples: 
-            mobiles: 
-              summary: Use this example for mobiles
-              value: 100
-            laptops:
-              summary: Use this example for laptops
-              value: 200
-            headphones:
-              summary: Use this example for headphones
-              value: 300
-      responses: 
-        '200':
-          description: A List of catergories
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/category" 
-              examples:
-                all-categories-data:
-                  summary: Categories example data
-                  value:
-                    - categoryId: 100
-                      name: mobiles
-                    - categoryId: 200
-                      name: laptops
-                    - categoryId: 300
-                      name: headphones
-                single-category-data:
-                  summary: Single Categories example data
-                  value:
-                    - categoryId: 100
-                      name: mobiles
-        '500':
-          $ref: "#/components/responses/InternalServerError"
-                    
-  /categories/{categoryId}:
-    get:
-      tags:
-        - Categories
-      summary: Returns the list of all products categories
-      description: Returns the list of all products and categories which is available on shopOnline portal
-      operationId: getCategoryDetails
-      security: []
-      parameters:
-        - name: categoryId
-          in: path
-          required: true
-          schema:
-            type: integer
-            maximum: 1000
-          example: 100
-      responses: 
-        '200':
-          description: A List of catergories
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/category" 
-        '500':
-          $ref: "#/components/responses/InternalServerError"
-  /products:
-    get:
-      tags:
-        - Products
-      summary: Returns the list of all products
-      description: Returns the list of all products which is available on shopOnline portal
-      operationId: getProducts
-      parameters:
-        - name: categoryId
-          in: query
-          schema:
-            type: integer
-            maximum: 1000
-          example: 100
-      responses: 
-        '200':
-          description: A List of catergories
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/products"
-              examples:
-                products-data:
-                  summary: Products example data
-                  value:
-                    - productId: 101
-                      name: Apple iPhone 13
-                      price: 1000000000
-                      categoryName: Mobiles
-                      quantity: 1
-                    - ProductId: 102
-                      name: Apple iPhone 14
-                      price: 1000000000
-                      categoryName: Mobiles
-                      quantity: 1
-        '500':
-          $ref: "#/components/responses/InternalServerError"
-  /products/{productsId}:
-    get:
-      tags:
-        - Products
-      summary: Returns the products details
-      description: Returns the products details based on ID which is available on shopOnline portal
-      operationId: getProductDetails
-      parameters:
-        - name: productsId
-          in: path
-          required: true
-          schema:
-            type: integer
-            maximum: 1000
-          example: 100
-      responses: 
-        '200':
-          description: A List of catergories
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/products"
-        '500':
-          $ref: "#/components/responses/InternalServerError"
-  /orders:
+paths:
+  /assets:
     post:
-      tags:
-        - Orders
-      summary: order api
+      summary: Upload assets to ContentFlow (CMS).
       description: |
-        Post order details for processing
-      operationId: saveOrderDetails
+        Post assets form DaB and upload to ContentFlow (CMS)
+      operationId: uploadAssets
+      security:
+        - APIKeyAuth: []
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
-                products: 
+                assets: 
                   type: array
                   items:
-                    $ref: "#/components/schemas/products" 
-                address:
-                  $ref: "#/components/schemas/Address"
+                    $ref: "#/components/schemas/assets" 
+              
       responses:
         '201':
-          description: Order created successfully
+          description: Assets uploaded successfully
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  orderId:
+                  assetID:
                     type: integer
-          links:
-            GetOrderByOrderId:
-              $ref: "#/components/links/GetOrderByOrderId"
+                  assetName:
+                    type: string
         '500':
-          $ref: "#/components/responses/InternalServerError"
-    put:
-      tags:
-        - Orders
-      summary: update order api
-      description: |
-        update order details for processing
-      operationId: updateOrderdetails
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                orderId: 
-                  type: integer
-                products: 
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/products"
-                address:
-                  $ref: "#/components/schemas/Address"
-      responses:
-        '200':
-          description: Order updated successfully
-        '500':
-          $ref: "#/components/responses/InternalServerError"
-    delete:
-      tags:
-        - Orders
-      summary: delete order api
-      description: delete order details
-      operationId: deleteOrderDetails
-      parameters:
-        - $ref: "#/components/parameters/orderIdQueryParam"
-      responses:
-        '204':
-          description: Order is deleted successfully
-        '500':
-          $ref: "#/components/responses/InternalServerError"
-    get:
-      tags:
-        - Orders
-      summary: get order details
-      description: get order details
-      operationId: getOrderDetails
-      parameters:
-        - $ref: "#/components/parameters/orderIdQueryParam"
-      responses:
-        '200':
-          description: Order is fetched successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  orderId: 
-                    type: integer
-                  products: 
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/products"
-                  address:
-                     $ref: "#/components/schemas/Address"
+          $ref: "#/components/responses/Standard500ErrorResponse"
           
-        '500':
-          $ref: "#/components/responses/InternalServerError"
-  /oneOfOrders:
-    post:
-      tags:
-        - Orders
-      summary: Insert oneof the order details
-      description: Insert oneof the order details in shopping cart
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                products:
-                  type: object
-                  oneOf:
-                    - $ref: "#/components/schemas/mobiles"
-                    - $ref: "#/components/schemas/laptops"
-                address: 
-                    $ref: "#/components/schemas/Address"
-              required:
-                - products
-                - address
-      responses:
-        '200':
-          description: order placed
-  /anyOfOrders:
-    get:
-      tags:
-        - Orders
-      summary: Get order
-      description: Get order details based on ID
+  /assets/{assetID}:
+    delete:
+      summary: Delete an assets from ContentFlow (CMS)
+      description: |
+         Delete an assets when asset is removed from S3 bucket
+      opreationID: deleteAssets        
+      security:
+        - APIKeyAuth: []
       parameters:
-        - $ref: "#/components/parameters/orderIdQueryParam"
-        - name: fetchType
-          in: query
+        - name: categoryId
+          in: path
           required: true
           schema:
-            type: string
-            enum:
-              - summary
-              - details
-          description: >
-            Fetch Type:
-              * `summary` - will provide the order summary
-              * `details` - will provide the sumamr & details of order address
+            type: integer
+            maximum: 1000
+          example: 100
       responses:
-        '200':
-          description:  return product details
+        '201':
+          description: Assets uploaded successfully
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: "#/components/schemas/OrderSummary"
-                  - $ref: "#/components/schemas/OrderDetails"
-            
-        
+                type: object
+                properties:
+                  assetID:
+                    type: integer
+                  assetName:
+                    type: string
+        '500':
+          $ref: "#/components/responses/Standard500ErrorResponse"
           
 components:
-  parameters:
-    orderIdQueryParam:
-      name: orderId
-      in: query
-      required: true
-      schema:
-        type: integer
   schemas:
-    Address: 
+    assets:
       type: object
       properties:
-        addressLine:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-          enum:
-            - ND
-            - MUM
-            - HYD
-        zipcode:
-          type: string
-        isOfficeAddress: 
-          type: boolean
-    products:
-      type: object
-      properties:
-        productId:
+        assetID:
           type: integer
-        name:
+        assetName:
           type: string
-        price:
-          type: number
-          format: float
-        categoryName:
+          description: >-
+                    name of files to be added. Name cannot contain any of the
+                    characters mentioned in braces (\, /, :, *, ?, “, <, >, |)
+        assetPath:
+          description: files for upload. type is file.
           type: string
-          nullable: true
-        releseDate:
-          type: string
-          format: date
-          readOnly: true
-        quantity:
-          type: integer
-          description: |
-              ***Quantity*** represents `stock` value when this field is being sent by OnlineShope.Where as in the scenarios of consumer sending this feild, it represents `number of product items` inside the order. Consumers are expected to handle the scenario of stopping the end user <u>*when the stock value is 0*</u> 
-    category:
-      type: object
+          format: binary 
+      required:
+        - assetID
+        - assetName
+        - assetPath
+    Error:
+      required:
+        - timestamp
+        - error
+        - message
+        - detail
       properties:
-        categoryId:
-          type: integer
-        name:
+        timestamp:
+          description: The server time stamp
           type: string
-    mobiles:
-      allOf:
-        - $ref: "#/components/schemas/products"
-        - type: object
-          properties:
-            networkType:
-              type: string
-              enum:
-                - 4G
-                - 5G
-          required: [networkType]
-    laptops:
-      allOf:
-        - $ref: "#/components/schemas/products"
-        - type: object
-          properties:
-            ram:
-              type: string
-              enum:
-                - 8GB RAM
-                - 16GB RAM
-                - 32GB RAM
-          required: [ram]
-    OrderSummary:
-      type: object
-      properties:
-        products:
-          type: array
-          items:
-            $ref: "#/components/schemas/products"
-    OrderDetails:
-      type: object
-      properties:
-        address:
-          $ref: "#/components/schemas/Address"
+          example: 1518308894652
+        error:
+          description: The API error code
+          type: string
+          example: 336
+        message:
+          description: The error message
+          type: string
+          example: error mesage
+        detail:
+          description: The source of the error
+          type: string
+          example: source
   responses:
-    InternalServerError:
-      description: |
-        ### An error has occured please contant hemkant.india@gmail.com for assistance
-  links:
-    GetOrderByOrderId:
-      description: >
-        * The `orderId` value returned in the response can be used as a input paramter in `GET /orders`.
-      operationId: getProductdetails
-      parameters:
-        orderId: '$response.body#/orderId'
+    Standard500ErrorResponse:
+      description: There was an unexpected error processing the request
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/problem+json
+      content:
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2023-02-16 10:49:29'
+                error: INTERNAL_SERVER_ERROR
+                title: There was an error processing the request
+                detail: '{''pointer'' : ''not available''}'
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+        
+    Standard404ErrorResponse:
+      description: Resource not found
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/json
+      content:
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2023-02-16 10:49:29'
+                error: RESOURCE_NOT_FOUND
+                message: The resource you are requesting does not exists.
+                detail: '{''pointer'' : ''not available''}'
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Standard414ErrorResponse:
+      description: The request URI was too long
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/json
+      content:
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2023-02-16 10:49:29'
+                error: REQUEST_URI_TOO_LONG
+                message: The requested URI was too long
+                detail: '{''pointer'' : ''not available''}'
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Standard422ErrorResponse:
+      description: Mandatory details not present
+      headers:
+        Content-Type:
+          schema:
+            type: string
+            default: application/problem+json
+      content:
+        application/json:
+          examples:
+            response:
+              value:
+                timestamp: '2023-02-16 10:49:29'
+                error: MANDATORY_PARAMETERS_NOT_FOUND
+                message: The query paramater filter should have assets-id as mandatory.
+                detail: >-
+                  MANDATORY_PARAMETERS_NOT_FOUND!!
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/octet-stream:
+          schema:
+            $ref: '#/components/schemas/Error'
+
   securitySchemes:
     BasicAuth:
       type: http
@@ -488,11 +252,3 @@ components:
             read: read accesss
             write: write accesss
             admin: admin accesss
-          
-          
-      
-      
-      
-      
-      
-      
