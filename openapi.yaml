@@ -64,7 +64,7 @@ paths:
                     
   /getAsset/{assetID}:
     get:
-      summary: Get assets from ContentFlow (CMS).
+      summary: Get asset from ContentFlow (CMS).
       description: |
         Get assets from ContentFlow (CMS)
       operationId: getAsset
@@ -91,7 +91,7 @@ paths:
           
   /asset/{assetID}:
     delete:
-      summary: Delete an assets from ContentFlow (CMS)
+      summary: Delete an asset from ContentFlow (CMS)
       description: |
          Delete an assets when asset is removed from S3 bucket
       opreationID: deleteAssets        
