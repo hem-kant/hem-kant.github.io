@@ -82,14 +82,10 @@ paths:
         '200':
           description: Assets retrived successfully
           content:
-            application/json:
+            image/png:
               schema:
-                type: object
-                properties:
-                  assetID:
-                    type: integer
-                  assetName:
-                    type: string
+                type: string
+                format: binary
         '500':
           $ref: "#/components/responses/Standard500ErrorResponse"
           
