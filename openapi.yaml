@@ -60,7 +60,7 @@ paths:
       security:
         - APIKeyAuth: []
       parameters:
-        - name: categoryId
+        - name: assetId
           in: path
           required: true
           schema:
