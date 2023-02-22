@@ -80,7 +80,7 @@ paths:
           example: 100
       responses:
         '200':
-          description: Assets retrived successfully
+          description: OK
           content:
             image/png:
               schema:
