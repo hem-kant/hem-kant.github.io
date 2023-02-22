@@ -61,6 +61,37 @@ paths:
                     type: integer
                   message:
                     type: string
+                    
+  /getAsset/{assetID}:
+    get:
+      summary: Get assets from ContentFlow (CMS).
+      description: |
+        Get assets from ContentFlow (CMS)
+      operationId: getAsset
+      security:
+        - APIKeyAuth: []    
+      parameters:
+        - name: assetId
+          in: path
+          required: true
+          schema:
+            type: integer
+            maximum: 1000
+          example: 100
+      responses:
+        '201':
+          description: Assets deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  assetID:
+                    type: integer
+                  assetName:
+                    type: string
+        '500':
+          $ref: "#/components/responses/Standard500ErrorResponse"
           
   /assets/{assetID}:
     delete:
